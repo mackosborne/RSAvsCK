@@ -15,3 +15,8 @@ For message creation I implement PKS#11. Follow these steps to use this in pytho
 pip install python-pkcs11
 '''
 2. Done
+
+XHR Failed?
+
+We may be on the wrong version of python
+- Nope, 3.8 is in usr/lib/python3

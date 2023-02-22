@@ -1,5 +1,10 @@
+import os
 import pkcs11
 
+
+
+f = open("RSA_flow.txt", "a")
+#KeyError: b'PKCS11_MODULE'
 lib = pkcs11.lib(os.environ['PKCS11_MODULE'])
 token = lib.get_token(token_label='DEMO')
 
@@ -12,3 +17,7 @@ with token.open(user_pin='1234') as session:
 
     # Encrypt as one block
     crypttext = pub.encrypt(data)
+    f.write(crypttext)
+f.close()
+
+
