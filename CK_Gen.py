@@ -1,10 +1,12 @@
-import pqcrypto
+from pqcrypto import *
 import random
 import string
 #-----------------------------------------------------------------------------------------------
 #- pqcrypto wont install
 #- pip install pqcrypto does not work
 #- Downloading the tar and installing seemed to work and satisfyied pip, but didnt satisfy import
+#- sudo python setup.py install
+
 
 #- I had to download the tar and install it manually
 

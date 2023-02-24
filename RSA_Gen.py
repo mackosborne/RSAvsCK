@@ -5,6 +5,7 @@ import random
 
 
 
+
 def basic_crypt():
     # Generate private key
     private_key = rsa.generate_private_key(
