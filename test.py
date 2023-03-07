@@ -1,6 +1,2 @@
-import pkcs11
-
-
-
-print(pkcs11.lib.__doc__)
-print(pkcs11.__file__)
+method = input("Training 1, Test 2: ")
+print("method: ", method)

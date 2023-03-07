@@ -20,3 +20,20 @@ XHR Failed?
 
 We may be on the wrong version of python
 - Nope, 3.8 is in usr/lib/python3
+
+
+
+Notes:
+-------------------------------------------------
+i; I Have made edit to 123 of kyber in kyber-py
+ii; Currently RSA datastream is run in RSA_Gen and CK in CK-Gen within Kyber-PY
+
+
+
+
+TODO:
+--------------------------------------------------
+1. Pretty print from both CSVs
+2. Verify CSV to ARFF
+3. Develop some tests and run
+4. Bundle up nicely
