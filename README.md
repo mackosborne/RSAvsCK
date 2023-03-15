@@ -27,7 +27,9 @@ Notes:
 -------------------------------------------------
 i; I Have made edit to 123 of kyber in kyber-py
 ii; Currently RSA datastream is run in RSA_Gen and CK in CK-Gen within Kyber-PY
-
+iii; Another test would be instead of picking a string out of John, to have the same string, Hello World
+iiii; RSA encryption is limited by keysize and given padding ect... message cannot exceed 190 bytes
+iiiii; arff library doubles // 's? Why prob wont make a difference
 
 
 
