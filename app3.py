@@ -2,12 +2,10 @@ import tkinter as tk
 from tkinter import ttk
 from time import sleep
 from deleter import *
-#Get Both RSA and CK
-from CK_Gen import *
-from RSA_Gen import *
-import sys
-sys.path.instert(0, '/home/mack/Desktop/RSAvsCK/kyber')
-sys.path.insert(0, '/home/mack/Desktop/RSAvsCK/RSA_gen')
+import RSA_gen
+import kyber
+
+
 
 
 

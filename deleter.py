@@ -36,7 +36,16 @@ def clear_csv():
     else:
         print("The file does not exist")
 
-if __name__ == "__main__":
+def clear_txt():
+    for file in os.listdir():
+        if file.endswith('.txt'):
+            os.remove(file)
+
+def clear_all():
     clear_arff()
     clear_csv()
+    clear_txt()
+
+if __name__ == "__main__":
+    clear_all()
     print("Done")
