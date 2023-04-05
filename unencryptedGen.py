@@ -150,84 +150,34 @@ def rand_crypt():
     
    
 
-    # Generate private key
-    private_key = rsa.generate_private_key(
-        public_exponent=65537,
-        key_size=2048,
-    )
-    public_key = private_key.public_key()
-
-    #convert public key to bytes
-    public_key_bytes = public_key.public_bytes(
-        encoding=serialization.Encoding.PEM,
-        format=serialization.PublicFormat.SubjectPublicKeyInfo
-    )
-
-    #Encrypt data
-    ciphertext = public_key.encrypt(
-        randomstr,
-        padding.OAEP(
-            mgf=padding.MGF1(algorithm=hashes.SHA256()),
-            algorithm=hashes.SHA256(),
-            label=None
-        )
-    )
-    print("ciphertext: ", ciphertext)
+    
+    print("ciphertext: ", randomstr)
     
 
     #return ciphertext  
-    return ciphertext
+    return randomstr
 
 def real_crypt(mode):
     #Check what mode we are in
-    if(mode == 1):
+    if(mode == 2):
         #Generate a string of real words
         notFound = True
         while notFound:
             with open('./resources/John_1.txt') as f:
                 chosen_line = random.choice(f.readlines())
             f.close
-            chosen_line = chosen_line.encode('UTF-8')
+            #chosen_line = chosen_line.encode('UTF-8')
             #ensure chosen line is less that 190 bytes
             if(len(chosen_line) < 190):
                 notFound = False
     else:
         chosen_line = b"Hello World"
 
-    # Generate private key
-    try:
-        private_key = rsa.generate_private_key(
-            public_exponent=65537,
-            key_size=2048,
-        )
-    except:
-        private_key = rsa.generate_private_key(
-            public_exponent=65537,
-            key_size=2048,
-        )
-    public_key = private_key.public_key()
-
-    #convert public key to bytes
-    public_key_bytes = public_key.public_bytes(
-        encoding=serialization.Encoding.PEM,
-        format=serialization.PublicFormat.SubjectPublicKeyInfo
-    )
-
-    #Encrypt data
-    ciphertext = public_key.encrypt(
-        chosen_line,
-        padding.OAEP(
-            mgf=padding.MGF1(algorithm=hashes.SHA256()),
-            algorithm=hashes.SHA256(),
-            label=None
-        )
-    )
-    print("ciphertext: ", ciphertext)
     
    
 
     #return ciphertext
-    return ciphertext
+    return chosen_line
 def generate(version, isTraining,randMode,limit):
     rowlist = []
     start = time.time()
@@ -282,7 +232,7 @@ def generate(version, isTraining,randMode,limit):
                 rowlist.append(entry)
                 writer.writerow(entry)
                 print("Entry: ", entry)
-    #f.close()
+    f.close()
     end = time.time()
     algorithim = "RSA"
     #prettyPrint(rowlist, times, start, end, limit, randMode, isTraining, algorithim)
@@ -294,24 +244,8 @@ def generate(version, isTraining,randMode,limit):
     
 if __name__ == "__main__":
     method = int(input("Training 1, Test 2: "))
+   
     limit = int(input("Enter number of iterations: "))
     randMode = int(input("Set String 1, Random String 2: "))
     generate(1,method,randMode,limit)
     #rowlist = []
-    
-    '''
-    method = 1
-    limit = 1
-    randMode = 1
-    i = 100
-    while i <= 2000:
-        limit = i
-        generate(1,method,randMode,limit)
-        i = i + 100
-    '''
-    
-
-
-
-    
-

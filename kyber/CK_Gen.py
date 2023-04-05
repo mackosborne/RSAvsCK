@@ -6,6 +6,7 @@ import string
 import csv
 import time
 import os
+from prettytable import PrettyTable
 
 #Setup file path
 outFileName="/home/mack/Desktop/RSAvsCK/outputs/CK_Stream.txt"
@@ -104,6 +105,64 @@ def prettyPrint(rowlist, times, start, end,limit, version, isTraining, algorithi
         f.write('\n')
     f.close()
 
+def veryPrettyPrint(rowlist, times, start, end,limit, version, isTraining, algorithim):
+    table= PrettyTable()
+    x = 0
+#Training Mode
+    if(isTraining == 1):
+        largest = 0
+        for entry in rowlist:
+            row = []
+            if entry[2] == 1:
+                row.append("True") 
+            else:
+                row.append("False") 
+            cryptWords = str(entry[1]).split('\\')
+            del cryptWords[0]
+            i =0
+            for word in cryptWords:
+                row.append(word)
+                if len(word)-1 > largest:
+                    largest = len(word)-1
+            data = [i, row]
+            table.add_row(data)
+            if len(row) > largest:
+                largest = len(row)
+            i = i + 1
+        x = 0
+        header = ["ID", "isReal"]
+        while x < largest:
+            header.append(str(x))
+            x = x + 1
+        table.field_names = header
+        print(table)
+        print("Total Time: ", end - start)
+        print("Average Time: ", sum(times)/len(times))
+        print("Total Entries: ", limit)
+        print("Version: ", version)
+        print("Algorithim: ", algorithim)
+#Testing Mode    
+    else:
+        for entry in rowlist:
+            row = []
+            cryptWords = str(entry[1]).split('\\')
+            del cryptWords[0]
+            for word in cryptWords:
+                row.append(word)
+            table.add_row(row)
+        if len(row) > largest:
+                largest = len(row)
+        header = ["ID"]
+        while x < largest:
+            header.append(str(x))
+            x = x + 1
+        table.field_names = header
+        print(table)
+        print("Total Time: ", end - start)
+        print("Average Time: ", sum(times)/len(times))
+        print("Total Entries: ", limit)
+        print("Version: ", version)
+        print("Algorithim: ", algorithim)
 def basic_crypt(Kyber):
     s = "Hello World!"
     s.encode('utf-8')
@@ -205,8 +264,8 @@ def generate(KyberChoice, method, isStatic, limit):
     f.close()
     end = time.time()
 
-    prettyPrint(rowlist,  times, start, end, limit, isStatic, method, str(KyberChoice))
-
+    #prettyPrint(rowlist,  times, start, end, limit, isStatic, method, str(KyberChoice))
+    #veryPrettyPrint(rowlist, times, start, end, limit, isStatic, method, str(KyberChoice))
     
     print("Total Time: ", end - start)
     print("Average Time: ", sum(times)/len(times))
@@ -214,7 +273,7 @@ def generate(KyberChoice, method, isStatic, limit):
         
 
 if __name__ == "__main__":
-    
+    '''
     i = 100
     limit = i
     method = 1
@@ -236,8 +295,8 @@ if __name__ == "__main__":
     while i <= 2000:
         generate(KyberChoice, method, isStatic, limit)
         i = i + 100
-
-    '''   
+    '''
+      
     #Select Kyber Version
     select = int(input("Enter 1 or nothing for Kyber512, 2 for Kyber768, 3 for Kyber1024: "))
     #Select Training or Testing  
@@ -255,6 +314,6 @@ if __name__ == "__main__":
     else:
         KyberChoice = Kyber512
     generate(KyberChoice, method, isStatic, limit)
-    '''
+    
     
         

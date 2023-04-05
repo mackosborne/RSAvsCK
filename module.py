@@ -1,3 +1,9 @@
+############################################
+# This is a module that contains functions #
+# that are used in the main.py file.       #
+############################################
+
+
 import tkinter as tk
 from tkinter import ttk
 from time import sleep
